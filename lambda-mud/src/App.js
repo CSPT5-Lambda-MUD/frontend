@@ -13,11 +13,11 @@ function App() {
     <div className="App">
       <NavBar />
       {/* Routes */}
-      <Route exact path="/" render={Home} />
-      <Route exact path="/login" render={Login} />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/login" component={Login} />
 
       {/* Private routes */}
-      <Route exact path="/game" render={Game} />
+      <Route exact path="/game" component={Game} />
     </div>
   );
 }

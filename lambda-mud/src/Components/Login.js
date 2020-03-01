@@ -11,7 +11,7 @@ const Login = () => {
 
     //
     setUsername('');
-    password('');
+    setPassword('');
   };
 
   return (
@@ -21,6 +21,7 @@ const Login = () => {
         <br />
         <form onSubmit={handleSubmit}>
           <TextField
+            name="username"
             id="outlined-basic"
             label="email"
             variant="outlined"
@@ -29,6 +30,7 @@ const Login = () => {
             onChange={e => setUsername(e.target.value)}
           />
           <TextField
+            name="password"
             id="outlined-basic"
             label="password"
             variant="outlined"
