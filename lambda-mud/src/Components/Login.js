@@ -1,14 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, Button } from '@material-ui/core';
+import axios from 'axios';
 
-const Login = () => {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+const Login = props => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleSubmit = () => {
-    console.log(username, password);
+  useEffect(() => {}, []);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    //create object with credentials
+    const credentials = {
+      username: username,
+      password: password
+    };
     //API Call here before clearing the fields
-
+    axios
+      .post(`https://lambda-mud-test.herokuapp.com/api/login/, ${credentials}`)
+      .then(response => {
+        console.log(response.data);
+        // place token in local storage for axiosWithAuth to handle it
+        localStorage.setItem('token', response.data);
+        //redirect user to game
+        // props.history.push('protected');
+      })
+      .catch(error => {
+        console.log(error);
+      });
     //
     setUsername('');
     setPassword('');
@@ -40,7 +59,7 @@ const Login = () => {
           />
           <br />
           <br />
-          <Button>Login</Button>
+          <Button type="submit">Login</Button>
         </form>
       </header>
     </div>

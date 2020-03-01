@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
+import PrivateRoute from './Auth/PrivateRoute';
 
 // Components
 import NavBar from './Components/NavBar';
@@ -17,7 +18,7 @@ function App() {
       <Route exact path="/login" component={Login} />
 
       {/* Private routes */}
-      <Route exact path="/game" component={Game} />
+      <PrivateRoute exact path="/game" component={Game} />
     </div>
   );
 }
