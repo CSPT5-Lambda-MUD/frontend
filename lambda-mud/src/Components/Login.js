@@ -7,8 +7,11 @@ const Login = props => {
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
   const [register, setRegister] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = e => {
+    setLoading(true);
     e.preventDefault();
     //create object with credentials
     const loginCredentials = {
@@ -23,6 +26,7 @@ const Login = props => {
     };
 
     //API Call here before clearing the fields
+    setError(false);
     if (register) {
       signUp(signUpCredentials);
     } else {
@@ -31,6 +35,7 @@ const Login = props => {
     //
     setUsername('');
     setPassword('');
+    setPassword2('');
   };
 
   function signIn(credentials) {
@@ -42,10 +47,13 @@ const Login = props => {
         localStorage.setItem('token', response.data);
         //redirect user to game
         // props.history.push('protected');
+        setLoading(false);
       })
 
       .catch(error => {
         console.log(error);
+        setError(true);
+        setLoading(false);
       });
   }
 
@@ -60,61 +68,82 @@ const Login = props => {
         localStorage.setItem('token', response.data);
         //redirect user to game
         // props.history.push('protected');
+        setLoading(false);
       })
 
       .catch(error => {
         console.log(error);
+        setError(true);
+        setLoading(false);
       });
   }
 
-  return (
-    <div>
-      <header className="App-header">
-        <h1>{register ? 'Sign up' : 'Login'}</h1>
-        <br />
-        <form onSubmit={handleSubmit}>
-          <TextField
-            name="username"
-            id="outlined-basic"
-            label="Email"
-            variant="outlined"
-            type="text"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-            required
-          />
-          <TextField
-            name="password"
-            id="outlined-basic"
-            label="Password"
-            variant="outlined"
-            type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
-          />
-          {register && (
+  if (loading) {
+    return (
+      <div>
+        <header className="App-header">
+          <h1>Loading ...</h1>
+        </header>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <header className="App-header">
+          <h1>{register ? 'Sign up' : 'Login'}</h1>
+          <br />
+          <form onSubmit={handleSubmit}>
+            {error && (
+              <h1 className="error">Incorrect email or password, try again.</h1>
+            )}
             <TextField
-              name="password2"
+              name="username"
               id="outlined-basic"
-              label="Confirm Password"
+              label="Email"
+              variant="outlined"
+              type="text"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              required
+              className="textField"
+            />
+            <TextField
+              name="password"
+              id="outlined-basic"
+              label="Password"
               variant="outlined"
               type="password"
-              value={password2}
-              onChange={e => setPassword2(e.target.value)}
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               required
+              className="textField"
             />
-          )}
-          <br />
-          <br />
-          <Button type="submit">{register ? 'Sign up' : 'Login'}</Button>
-        </form>
-        <button onClick={() => setRegister(!register)}>
-          {register ? 'Login' : 'Sign up'}
-        </button>
-      </header>
-    </div>
-  );
+            {register && (
+              <TextField
+                name="password2"
+                id="outlined-basic"
+                label="Confirm Password"
+                variant="outlined"
+                type="password"
+                value={password2}
+                onChange={e => setPassword2(e.target.value)}
+                required
+                className="textField"
+              />
+            )}
+            <br />
+            <br />
+            <Button type="submit" id="submitButton">
+              {register ? 'Sign up' : 'Login'}
+            </Button>
+          </form>
+          <a onClick={() => setRegister(!register)} id="signupButton">
+            {register ? 'Already have account?' : 'Sign up'}
+          </a>
+        </header>
+      </div>
+    );
+  }
 };
 
 export default Login;

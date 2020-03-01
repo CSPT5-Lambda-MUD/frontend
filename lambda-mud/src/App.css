@@ -65,10 +65,24 @@ a {
   text-align: left;
 }
 
-.container {
-  width: 30%;
+
+.textField input {
+  /* border-radius: 5px; */
+  color: white;
 }
 
-form input::placeholder {
-  color: white;
+#submitButton {
+  background-color: rgb(33, 219, 173);
+  margin: 20px;
+}
+
+#signupButton {
+  color: lightblue;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  padding: 20px;
 }

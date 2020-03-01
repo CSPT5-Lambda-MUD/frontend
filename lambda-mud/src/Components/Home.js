@@ -6,6 +6,7 @@ const Home = () => {
     <div>
       <header className="App-header">
         <h1>Home Page</h1>
+        <br />
         <img src={logo} className="App-logo" alt="logo" />
       </header>
     </div>
