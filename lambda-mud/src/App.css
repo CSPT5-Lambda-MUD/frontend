@@ -44,9 +44,8 @@ nav {
   justify-content: space-between;
   margin-right: 30px;
   position: fixed;
-  top: 0px
+  top: 0px;
 }
-
 
 a {
   text-decoration: none;
@@ -59,11 +58,17 @@ a {
   /* border-style: solid;
   border-color: green; */
   color: rgb(33, 219, 173);
-
 }
 
 #home {
   flex-grow: 10;
   text-align: left;
+}
 
+.container {
+  width: 30%;
+}
+
+form input::placeholder {
+  color: white;
 }
