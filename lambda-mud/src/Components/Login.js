@@ -24,7 +24,6 @@ const Login = props => {
       password1: password,
       password2: password2
     };
-    console.log(signUpCredentials);
     //API Call here before clearing the fields
     setError(false);
     if (register) {
@@ -40,14 +39,14 @@ const Login = props => {
 
   function signIn(credentials) {
     axios
-      .post(`https://lambda-mud-test.herokuapp.com/api/login/, ${credentials}`)
+      .post(`https://lambda-mud-test.herokuapp.com/api/login/`, credentials)
       .then(response => {
-        console.log(response.data);
         // place token in local storage for axiosWithAuth to handle it
         localStorage.setItem('token', response.data.key);
         //redirect user to game
-        // props.history.push('protected');
+        props.history.push('/game');
         setLoading(false);
+        window.location.reload();
       })
       .catch(error => {
         console.log(error);
@@ -59,15 +58,16 @@ const Login = props => {
   function signUp(credentials) {
     axios
       .post(
-        `https://lambda-mud-test.herokuapp.com/api/registration/, ${credentials}`
+        `https://lambda-mud-test.herokuapp.com/api/registration/`,
+        credentials
       )
       .then(response => {
-        console.log(response.data);
         // place token in local storage for axiosWithAuth to handle it
         localStorage.setItem('token', response.data.key);
         //redirect user to game
-        // props.history.push('protected');
+        props.history.push('/game');
         setLoading(false);
+        window.location.reload();
       })
       .catch(error => {
         console.log(error);

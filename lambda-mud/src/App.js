@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
 import PrivateRoute from './Auth/PrivateRoute';
@@ -16,7 +16,6 @@ function App() {
       {/* Routes */}
       <Route exact path="/" component={Home} />
       <Route exact path="/login" component={Login} />
-
       {/* Private routes */}
       <PrivateRoute exact path="/game" component={Game} />
     </div>
