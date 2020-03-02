@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import axios from 'axios';
 
@@ -24,7 +24,7 @@ const Login = props => {
       password1: password,
       password2: password2
     };
-
+    console.log(signUpCredentials);
     //API Call here before clearing the fields
     setError(false);
     if (register) {
@@ -44,12 +44,11 @@ const Login = props => {
       .then(response => {
         console.log(response.data);
         // place token in local storage for axiosWithAuth to handle it
-        localStorage.setItem('token', response.data);
+        localStorage.setItem('token', response.data.key);
         //redirect user to game
         // props.history.push('protected');
         setLoading(false);
       })
-
       .catch(error => {
         console.log(error);
         setError(true);
@@ -65,12 +64,11 @@ const Login = props => {
       .then(response => {
         console.log(response.data);
         // place token in local storage for axiosWithAuth to handle it
-        localStorage.setItem('token', response.data);
+        localStorage.setItem('token', response.data.key);
         //redirect user to game
         // props.history.push('protected');
         setLoading(false);
       })
-
       .catch(error => {
         console.log(error);
         setError(true);
@@ -98,7 +96,6 @@ const Login = props => {
             )}
             <TextField
               name="username"
-              id="outlined-basic"
               label="Email"
               variant="outlined"
               type="text"
@@ -109,10 +106,9 @@ const Login = props => {
             />
             <TextField
               name="password"
-              id="outlined-basic"
               label="Password"
               variant="outlined"
-              type="password"
+              type="current-password"
               value={password}
               onChange={e => setPassword(e.target.value)}
               required
@@ -121,10 +117,9 @@ const Login = props => {
             {register && (
               <TextField
                 name="password2"
-                id="outlined-basic"
                 label="Confirm Password"
                 variant="outlined"
-                type="password"
+                type="new-password"
                 value={password2}
                 onChange={e => setPassword2(e.target.value)}
                 required
@@ -137,9 +132,9 @@ const Login = props => {
               {register ? 'Sign up' : 'Login'}
             </Button>
           </form>
-          <a onClick={() => setRegister(!register)} id="signupButton">
+          <p onClick={() => setRegister(!register)} id="signupButton">
             {register ? 'Already have account?' : 'Sign up'}
-          </a>
+          </p>
         </header>
       </div>
     );
