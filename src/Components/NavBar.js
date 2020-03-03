@@ -6,7 +6,6 @@ const NavBar = () => {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      console.log('Checking local Storage');
       setIsLogin(true);
     }
   }, [isLogin]);
