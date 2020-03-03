@@ -108,7 +108,7 @@ const Login = props => {
               name="password"
               label="Password"
               variant="outlined"
-              type="current-password"
+              type="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
               required
@@ -119,7 +119,7 @@ const Login = props => {
                 name="password2"
                 label="Confirm Password"
                 variant="outlined"
-                type="new-password"
+                type="password"
                 value={password2}
                 onChange={e => setPassword2(e.target.value)}
                 required
