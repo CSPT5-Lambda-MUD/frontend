@@ -6,7 +6,6 @@ const NavBar = () => {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      console.log('Checking local Storage');
       setIsLogin(true);
     }
   }, [isLogin]);
@@ -28,7 +27,7 @@ const NavBar = () => {
             Log out
           </NavLink>
         ) : (
-          <NavLink to="/" activeClassName="selectedLink">
+          <NavLink to="/login" activeClassName="selectedLink">
             Log in
           </NavLink>
         )}
