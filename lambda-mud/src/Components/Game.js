@@ -10,7 +10,7 @@ const Game = () => {
   useEffect(() => {
     //Initialize connection
     init();
-    console.log(token);
+    console.log('Testing Token', token);
   }, [token]);
 
   // 1.Request: (Replace token string with logged in user's auth token)
@@ -25,7 +25,7 @@ const Game = () => {
       .then(res => {
         setRoom(res.data);
         setUuid(res.data.uuid);
-        console.log('XXXX', room);
+        console.log('Testing rooms', room);
       })
       .catch(error => {
         console.log(error);
