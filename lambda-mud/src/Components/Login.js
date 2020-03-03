@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, CircularProgress } from '@material-ui/core';
 import axios from 'axios';
 
 const Login = props => {
@@ -80,7 +80,7 @@ const Login = props => {
     return (
       <div>
         <header className="App-header">
-          <h1>Loading ...</h1>
+          <CircularProgress />
         </header>
       </div>
     );
