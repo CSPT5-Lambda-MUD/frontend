@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { IconButton, Icon } from '@material-ui/core';
+import { CircularProgress, IconButton, Icon } from '@material-ui/core';
 
 const Game = () => {
   //Hooks
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [uuid, setUuid] = useState('');
   const [room, setRoom] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     //Initialize connection
@@ -15,6 +16,7 @@ const Game = () => {
 
   // 1.Request: (Replace token string with logged in user's auth token)
   const init = () => {
+    setLoading(true);
     const header = {
       Authorization: `Token ${token}`
     };
@@ -25,6 +27,7 @@ const Game = () => {
       .then(res => {
         setRoom(res.data);
         setUuid(res.data.uuid);
+        setLoading(false);
       })
       .catch(error => {
         console.log(error);
@@ -32,6 +35,7 @@ const Game = () => {
   };
 
   const move = direction => {
+    setLoading(true);
     const header = {
       Authorization: `Token ${token}`,
       'Content-Type': 'application/json'
@@ -44,6 +48,7 @@ const Game = () => {
       )
       .then(res => {
         setRoom(res.data);
+        setLoading(false);
       })
       .catch(error => {
         console.log(error);
@@ -82,24 +87,19 @@ const Game = () => {
         <div id="west-tag">
           <h1>W</h1>
         </div>
-        {/* <p>
-          In this room: {room.name}
-          {room.players && room.players.map(player => `, ${player}`)}
-        </p> */}
-        {/* <h1>Game</h1>
-        <br />
-        <br />
-        {uuid && (
+
+        {/* message and tile */}
+        {loading ? (
           <div>
-            <h1>UUID: {uuid}</h1>
-            <h1>Room: {room.name}</h1>
+            <CircularProgress />
           </div>
-        )} */}
-        <div id="msg-container">
-          <h1>{room.title}</h1>
-          <br />
-          <p>{room.description}</p>
-        </div>
+        ) : (
+          <div id="msg-container">
+            <h1>{room.title}</h1>
+            <br />
+            <p>{room.description}</p>
+          </div>
+        )}
       </header>
     </div>
   );
