@@ -8,6 +8,8 @@ const Game = () => {
   const [uuid, setUuid] = useState('');
   const [room, setRoom] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isError, setError] = useState('');
+  const [cantMove, setCanMove] = useState(true);
 
   useEffect(() => {
     //Initialize connection
@@ -30,6 +32,8 @@ const Game = () => {
         setLoading(false);
       })
       .catch(error => {
+        setLoading(false);
+        setError(error.data.error);
         console.log(error);
       });
   };
@@ -47,10 +51,18 @@ const Game = () => {
         { headers: header }
       )
       .then(res => {
-        setRoom(res.data);
+        if (room.title == res.data.title) {
+          setCanMove(false);
+        } else {
+          setCanMove(true);
+          setRoom(res.data);
+        }
+
         setLoading(false);
       })
       .catch(error => {
+        setLoading(false);
+        setError(error.data.error);
         console.log(error);
       });
   };
@@ -72,6 +84,9 @@ const Game = () => {
           <IconButton onClick={() => move('e')}>
             <Icon color="secondary">arrow_forward</Icon>
           </IconButton>
+          {!cantMove && (
+            <h1 id="cannot-move">Can't move in that direction, try again.</h1>
+          )}
         </div>
 
         {/* Mark coodinates */}
@@ -95,6 +110,7 @@ const Game = () => {
           </div>
         ) : (
           <div id="msg-container">
+            {isError && <h1>{isError}</h1>}
             <h1>{room.title}</h1>
             <br />
             <p>{room.description}</p>

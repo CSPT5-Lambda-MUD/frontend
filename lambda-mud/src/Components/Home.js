@@ -5,9 +5,18 @@ const Home = () => {
   return (
     <div>
       <header className="App-header">
-        <h1>Home Page</h1>
-        <br />
-        <img src={logo} className="App-logo" alt="logo" />
+        <div class="compass">
+          <div class="compass-inner">
+            <div class="north">N</div>
+            <div class="east">E</div>
+            <div class="west">W</div>
+            <div class="south">S</div>
+            <div class="main-arrow">
+              <div class="arrow-up"></div>
+              <div class="arrow-down"></div>
+            </div>
+          </div>
+        </div>
       </header>
     </div>
   );
