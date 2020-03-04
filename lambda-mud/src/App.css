@@ -120,3 +120,7 @@ a {
   position: fixed;
   left: 10px;
 }
+
+#msg-container {
+  width: 50%;
+}

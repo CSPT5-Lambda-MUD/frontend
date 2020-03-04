@@ -11,10 +11,10 @@ const Game = () => {
   useEffect(() => {
     //Initialize connection
     init();
-  }, [token]);
+  }, [token, room]);
 
   // 1.Request: (Replace token string with logged in user's auth token)
-  function init() {
+  const init = () => {
     const header = {
       Authorization: `Token ${token}`
     };
@@ -29,23 +29,42 @@ const Game = () => {
       .catch(error => {
         console.log(error);
       });
-  }
+  };
+
+  const move = direction => {
+    const header = {
+      Authorization: `Token ${token}`,
+      'Content-Type': 'application/json'
+    };
+    axios
+      .post(
+        `https://lambda-mud-test.herokuapp.com/api/adv/move`,
+        { direction: direction },
+        { headers: header }
+      )
+      .then(res => {
+        setRoom(res.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   return (
     <div>
       <header className="App-header">
         {/* Controls */}
         <div className="control-container">
-          <IconButton>
+          <IconButton onClick={() => move('w')}>
             <Icon color="secondary">arrow_back</Icon>
           </IconButton>
-          <IconButton>
+          <IconButton onClick={() => move('n')}>
             <Icon color="secondary">arrow_upward</Icon>
           </IconButton>
-          <IconButton>
+          <IconButton onClick={() => move('s')}>
             <Icon color="secondary">arrow_downward</Icon>
           </IconButton>
-          <IconButton>
+          <IconButton onClick={() => move('e')}>
             <Icon color="secondary">arrow_forward</Icon>
           </IconButton>
         </div>
@@ -76,7 +95,7 @@ const Game = () => {
             <h1>Room: {room.name}</h1>
           </div>
         )} */}
-        <div>
+        <div id="msg-container">
           <h1>{room.title}</h1>
           <br />
           <p>{room.description}</p>
