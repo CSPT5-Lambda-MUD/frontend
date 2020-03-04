@@ -115,16 +115,23 @@ const Login = props => {
               className="textField"
             />
             {register && (
-              <TextField
-                name="password2"
-                label="Confirm Password"
-                variant="outlined"
-                type="password"
-                value={password2}
-                onChange={e => setPassword2(e.target.value)}
-                required
-                className="textField"
-              />
+              <span>
+                <TextField
+                  name="password2"
+                  label="Confirm Password"
+                  variant="outlined"
+                  type="password"
+                  value={password2}
+                  onChange={e => setPassword2(e.target.value)}
+                  required
+                  className="textField"
+                />
+                <br />
+                <br />
+                <p id="pass-req">
+                  * Password must contain at least 8 characters.
+                </p>
+              </span>
             )}
             <br />
             <br />

@@ -89,3 +89,34 @@ a {
   color: red;
   padding: 20px;
 }
+
+#pass-req {
+  font-size: 12px;
+}
+
+
+/* Game */
+.control-container {
+  position: fixed;
+  top: 70px;
+}
+
+#nort-tag {
+  position: fixed;
+  top: 30px;
+}
+
+#east-tag {
+  position: fixed;
+  right: 10px;
+}
+
+#south-tag {
+  position: fixed;
+  bottom: 10px;
+}
+
+#west-tag {
+  position: fixed;
+  left: 10px;
+}
