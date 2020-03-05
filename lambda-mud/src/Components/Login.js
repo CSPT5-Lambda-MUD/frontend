@@ -39,7 +39,7 @@ const Login = props => {
 
   function signIn(credentials) {
     axios
-      .post(`https://lambda-mud-test.herokuapp.com/api/login/`, credentials)
+      .post(`${process.env.REACT_APP_API}/api/login/`, credentials)
       .then(response => {
         // place token in local storage for axiosWithAuth to handle it
         localStorage.setItem('token', response.data.key);
@@ -57,10 +57,7 @@ const Login = props => {
 
   function signUp(credentials) {
     axios
-      .post(
-        `https://lambda-mud-test.herokuapp.com/api/registration/`,
-        credentials
-      )
+      .post(`${process.env.REACT_APP_API}/registration/`, credentials)
       .then(response => {
         // place token in local storage for axiosWithAuth to handle it
         localStorage.setItem('token', response.data.key);
