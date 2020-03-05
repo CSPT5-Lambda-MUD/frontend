@@ -5,15 +5,15 @@ const Home = () => {
   return (
     <div>
       <header className="App-header">
-        <div class="compass">
-          <div class="compass-inner">
-            <div class="north">N</div>
-            <div class="east">E</div>
-            <div class="west">W</div>
-            <div class="south">S</div>
-            <div class="main-arrow">
-              <div class="arrow-up"></div>
-              <div class="arrow-down"></div>
+        <div className="compass">
+          <div className="compass-inner">
+            <div className="north">N</div>
+            <div className="east">E</div>
+            <div className="west">W</div>
+            <div className="south">S</div>
+            <div className="main-arrow">
+              <div className="arrow-up"></div>
+              <div className="arrow-down"></div>
             </div>
           </div>
         </div>

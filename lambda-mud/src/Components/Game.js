@@ -14,7 +14,6 @@ const Game = () => {
   useEffect(() => {
     //Initialize connection
     init();
-    console.log('Request');
   }, [token]);
 
   // 1.Request: (Replace token string with logged in user's auth token)
