@@ -23,7 +23,7 @@ const Game = () => {
       Authorization: `Token ${token}`
     };
     axios
-      .get(`https://lambda-mud-test.herokuapp.com/api/adv/init/`, {
+      .get(`${process.env.REACT_APP_API}/adv/init/`, {
         headers: header
       })
       .then(res => {
@@ -46,7 +46,7 @@ const Game = () => {
     };
     axios
       .post(
-        `https://lambda-mud-test.herokuapp.com/api/adv/move`,
+        `${process.env.REACT_APP_API}/adv/move`,
         { direction: direction },
         { headers: header }
       )

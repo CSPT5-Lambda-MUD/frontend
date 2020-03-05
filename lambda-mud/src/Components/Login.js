@@ -39,7 +39,7 @@ const Login = props => {
 
   function signIn(credentials) {
     axios
-      .post(`${process.env.REACT_APP_API}/api/login/`, credentials)
+      .post(`${process.env.REACT_APP_API}/login/`, credentials)
       .then(response => {
         // place token in local storage for axiosWithAuth to handle it
         localStorage.setItem('token', response.data.key);
