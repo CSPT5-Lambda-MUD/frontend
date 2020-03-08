@@ -3,18 +3,20 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 const MapBox = styled.div`
-    height: 100vh;
-    width: 80%;
-    margin: auto auto;
+    height: 50vh;
+    width: 50%;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    margin: 20px auto;
+    margin-top: 40px;
 
 `
 
 const MapItem = styled.div`
-    height: 10%;
-    width: 10%;
+    height: 5%;
+    width: 5%;
+    display: flex;
 
 `
 
@@ -28,7 +30,6 @@ class MapComponent extends React.Component {
   }
 
   componentDidMount() {
-    console.log("dfdfsdf???")
     const header = {
         Authorization: `Token ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
@@ -62,12 +63,17 @@ class MapComponent extends React.Component {
                     console.log(room)
                     if (room !== "0"){
                         if (room.current_room) {
+                            console.log(room.n)
                             return (
                                 <MapItem>
                                     <svg>
-                                        <rect  width="38%" height="45%" fill="blue"  />
+                                        <rect  width="90%" height="90%" fill="red"  />
+                                        {(room.n !== 0) ? <rect  x="25%" y="-85%" width="33%" fill="black"  /> : null}
+                                        {(room.w !== 0) ? <rect  x="-85%" y="25%" height="33%" fill="black"  /> : null}
+                                        {(room.e !== 0) ? <rect  x="85%" y="25%" height="33%" fill="black"  /> : null}
+                                        {(room.s !== 0) ? <rect  x="25%" y="85%" width="33%" fill="black"  /> : null}
+                                        
                                     </svg>
-                                    
                                 </MapItem>
                             )
                         }
@@ -75,9 +81,12 @@ class MapComponent extends React.Component {
                             return (
                                 <MapItem>
                                     <svg>
-                                        <rect  width="38%" height="45%" fill="red"  />
+                                        <rect  width="90%" height="90%" fill="darkblue"  />
+                                        {(room.n !== 0) ? <rect  x="25%" y="-85%" width="33%" fill="black"  /> : null}
+                                        {(room.w !== 0) ? <rect  x="-85%" y="25%" height="33%" fill="black"  /> : null}
+                                        {(room.e !== 0) ? <rect  x="85%" y="25%" height="33%" fill="black"  /> : null}
+                                        {(room.s !== 0) ? <rect  x="25%" y="85%" width="33%" fill="black"  /> : null}
                                     </svg>
-                                    
                                 </MapItem>
                             )
                         }
@@ -86,7 +95,7 @@ class MapComponent extends React.Component {
                         return (
                             <MapItem>
                                 <svg >
-                                    <rect width="38%" height="45%"  />
+                                    <rect width="90%" height="90%" fill="lightgrey" />
                                 </svg>
                                 
                             </MapItem>
