@@ -25,7 +25,7 @@ class MapComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        rooms: []
+        rooms: [title:'dummy room']
     };
   }
 
