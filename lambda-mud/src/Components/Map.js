@@ -25,11 +25,11 @@ class MapComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        rooms: [0]
+        rooms: [null, null]
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const header = {
         Authorization: `Token ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
