@@ -1,10 +1,10 @@
 import React from 'react';
-import logo from '../logo2.png';
 
 const Home = () => {
   return (
     <div>
       <header className="App-header">
+        
         <div className="compass">
           <div className="compass-inner">
             <div className="north">N</div>
