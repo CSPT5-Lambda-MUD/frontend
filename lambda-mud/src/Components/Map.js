@@ -25,7 +25,7 @@ class MapComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        rooms: [title='Test Room',description='Test Room Description',N_to=null,S_to=null,E_to=null,W_to=null,x=0,y=0]
+        rooms: [0]
     };
   }
 
