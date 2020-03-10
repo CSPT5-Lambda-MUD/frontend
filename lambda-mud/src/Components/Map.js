@@ -39,7 +39,7 @@ class MapComponent extends React.Component {
 
     
       axios
-      .get(`${process.env.REACT_APP_API}/adv/rooms/`, {
+      .get(`${process.env.REACT_APP_API}/adv/room/`, {
         headers: header
       })
       .then(res => {
