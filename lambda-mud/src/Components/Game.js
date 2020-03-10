@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { CircularProgress, IconButton, Icon } from '@material-ui/core';
-import MapComponent from './Map';
+// import MapComponent from './Map';
 
 const Game = () => {
   //Hooks
@@ -111,7 +111,7 @@ const Game = () => {
           </div>
         ) : (
           <div id="msg-container">
-            <MapComponent/>
+            {/* <MapComponent/> */}
             {isError && <h1>{isError}</h1>}
             <h1>{room.title}</h1>
             <br />
